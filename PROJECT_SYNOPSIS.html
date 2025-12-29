@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Synopsis - Real Estate Web Application</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+        }
+
+        h1 {
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 0.5rem;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            color: #2563eb;
+            margin-top: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.25rem;
+        }
+
+        h3 {
+            color: #475569;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #1e293b;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            border: none;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            text-align: center;
+            color: #64748b;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                max-width: 100%;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Project Synopsis</h1>
+        <p>Real Estate Web Application</p>
+    </div>
+
+    <h2>1. Introduction</h2>
+    <p>The <strong>Real Estate Web Application</strong> is a modern, responsive digital platform designed to bridge the
+        gap between property buyers, sellers, and renters. It provides a seamless user experience for discovering,
+        listing, and inquiring about real estate properties. Built with simplicity and performance in mind, the
+        application leverages cloud-based technologies to offer real-time data and secure communication.</p>
+
+    <h2>2. Objective</h2>
+    <p>The primary objective of this project is to democratize the real estate market by providing a user-friendly
+        interface where:</p>
+    <ul>
+        <li><strong>Sellers</strong> can easily list their properties with detailed information and images.</li>
+        <li><strong>Buyers/Tenants</strong> can search for properties based on specific criteria (location, price, type)
+            without geographic restrictions.</li>
+        <li><strong>Communication</strong> is streamlined through an integrated real-time chat system, eliminating the
+            need for third-party messaging apps initially.</li>
+    </ul>
+
+    <h2>3. Key Features</h2>
+
+    <h3>A. User Authentication & Profiles</h3>
+    <ul>
+        <li><strong>Secure Access:</strong> Users can sign up and log in using their email addresses via Firebase
+            Authentication.</li>
+        <li><strong>Profile Management:</strong> Users can manage their personal details (Name, Phone, Bio) and view
+            their profile completion status.</li>
+        <li><strong>Role Agnostic:</strong> The same account works for both buying and selling, allowing flexible usage.
+        </li>
+    </ul>
+
+    <h3>B. Property Management (CRUD)</h3>
+    <ul>
+        <li><strong>List Properties:</strong> Authenticated users can post property listings with comprehensive details:
+            Title, Image URL, Price (INR), Type (Sale/Rent), Address, Bed/Bath counts, Area (sqft), and Description.
+        </li>
+        <li><strong>Global Visibility:</strong> Properties listed by any user are immediately visible to all visitors on
+            the platform, regardless of their physical location.</li>
+        <li><strong>Dynamic Rendering:</strong> Listings are displayed in a responsive grid layout with "Newest First"
+            sorting.</li>
+    </ul>
+
+    <h3>C. Advanced Search & Filtering</h3>
+    <ul>
+        <li><strong>Smart Search:</strong> Users can filter properties by <strong>Location</strong> (City/Neighborhood),
+            <strong>Property Type</strong> (Apartment, Villa, House), and <strong>Price Range</strong> (localized to
+            Indian Rupees, e.g., ₹50 Lakh - ₹1 Cr).</li>
+        <li><strong>Tabbed Browsing:</strong> Quick toggles for "Buy", "Rent", and "Sold" properties.</li>
+    </ul>
+
+    <h3>D. Real-Time Communication</h3>
+    <ul>
+        <li><strong>Integrated Chat:</strong> A built-in chat widget allows interested buyers to instantly messsage
+            sellers directly from the property detail page.</li>
+        <li><strong>Inbox:</strong> Users can view a history of their active conversations in their profile section.
+        </li>
+    </ul>
+
+    <h3>E. Utility Tools</h3>
+    <ul>
+        <li><strong>EMI Calculator:</strong> A built-in financial tool to help buyers estimate their monthly loan
+            payments based on principal, rate, and tenure.</li>
+        <li><strong>Area Converter:</strong> A utility to convert land area between common units (Sq. Ft, Sq. Meter,
+            Acre, Guntha).</li>
+    </ul>
+
+    <h2>4. Technology Stack</h2>
+
+    <h3>Frontend</h3>
+    <ul>
+        <li><strong>HTML5/CSS3:</strong> Semantic markup and custom responsive styling (Flexbox/Grid), avoiding heavy
+            CSS frameworks for optimized performance.</li>
+        <li><strong>JavaScript (ES6+):</strong> Vanilla JavaScript for all client-side logic, DOM manipulation, and
+            state management.</li>
+        <li><strong>Design:</strong> Modern UI with "Glassmorphism" elements, smooth transitions, and a clean, premium
+            aesthetic.</li>
+        <li><strong>Icons:</strong> Lucide Icons for a consistent visual language.</li>
+    </ul>
+
+    <h3>Backend / Infrastructure (Serverless)</h3>
+    <ul>
+        <li><strong>Google Firebase:</strong>
+            <ul>
+                <li><strong>Authentication:</strong> Handles user identity and session management.</li>
+                <li><strong>Cloud Firestore:</strong> A NoSQL real-time database to store properties, user profiles, and
+                    chat messages.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>5. Target Audience</h2>
+    <ul>
+        <li><strong>Home Buyers/Renters:</strong> Individuals looking for residential properties.</li>
+        <li><strong>Property Owners:</strong> Individuals wanting to sell or rent out their real estate.</li>
+        <li><strong>Real Estate Agents:</strong> Professionals needed a platform to showcase their portfolio.</li>
+    </ul>
+
+    <h2>6. Future Scope</h2>
+    <ul>
+        <li><strong>Map Integration:</strong> Visualizing properties on an interactive map (e.g., Google Maps API).</li>
+        <li><strong>Image Uploads:</strong> Direct file hosting (currently uses URLs) using Firebase Storage.</li>
+        <li><strong>Notifications:</strong> Email or push notifications for new messages or relevant listings.</li>
+        <li><strong>Admin Dashboard:</strong> For moderation of listings and users.</li>
+    </ul>
+
+    <div class="no-print" style="margin-top: 3rem; text-align: center; border-top: 2px dashed #ccc; padding-top: 1rem;">
+        <p><em>To save this as a PDF, right-click and select "Print" (or press Ctrl+P), then choose "Save as PDF" as the
+                destination.</em></p>
+    </div>
+</body>
+
+</html>

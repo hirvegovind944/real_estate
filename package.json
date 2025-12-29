@@ -1,0 +1,10 @@
+{
+    "name": "real-estate-web",
+    "version": "1.0.0",
+    "description": "Simple real estate website",
+    "scripts": {
+        "dev": "npx serve ."
+    },
+    "author": "",
+    "license": "ISC"
+}

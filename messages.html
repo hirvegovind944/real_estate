@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Find your dream home with Real Estate. Search mostly luxury properties for sale and rent.">
+    <title>Real Estate | Find Your Dream Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Rest of header/hero... -->
+    <!-- HERO REMOVED FOR MESSAGE PAGE -->
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Real Estate.</a>
+            <div class="nav-links">
+                <a href="index.html#home" id="nav-home">Home</a>
+                <a href="index.html#buy">Buy</a>
+                <a href="index.html#rent">Rent</a>
+                <a href="index.html#sell">Sell</a>
+                <a href="index.html#agents">Agents</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="#" id="nav-messages" class="active" style="display:none; color: var(--accent);">
+                    Messages <span id="msg-badge" class="notification-badge">0</span>
+                </a>
+                <a href="#" id="nav-profile-link" style="display:none">Profile</a>
+                <a href="#" class="btn-primary" id="auth-btn">Login</a>
+            </div>
+            <button class="menu-btn" id="menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Messages Section (Visible by Default) -->
+    <section id="messages-section" class="messages-section"
+        style="display: block; min-height: 100vh; padding-top: 100px;">
+        <div class="container">
+            <div class="messages-container" style="height: 80vh;">
+                <div class="messages-header">
+                    <h2>My Messages</h2>
+                    <a href="index.html" style="color:white; font-size:0.9rem; text-decoration:underline;">Back to
+                        Home</a>
+                </div>
+                <div class="messages-list-large" id="messages-list-large">
+                    <!-- Messages will be injected here -->
+                    <p style="padding: 2rem; color: var(--text-light); text-align: center;">Loading conversations...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section (Hidden by default, used if profile clicked) -->
+    <section id="profile-section" class="profile-section">
+        <div class="container">
+            <div class="profile-grid">
+                <!-- Sidebar -->
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <h2 id="profile-name">User Name</h2>
+                    <p id="profile-email" style="color:var(--text-light); margin-bottom: 1rem;">user@example.com</p>
+
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Profile Completion: <span
+                                id="completion-text">0%</span></p>
+                        <div class="completion-bar">
+                            <div class="completion-fill" id="completion-fill"></div>
+                        </div>
+                    </div>
+
+                    <button id="logout-btn-profile" class="btn-primary"
+                        style="background: #ef4444; width: 100%; margin-top: 2rem;">Logout</button>
+                </div>
+
+                <!-- Content -->
+                <div class="profile-content">
+                    <div class="profile-card" style="text-align: left;">
+                        <h3>Update Profile</h3>
+                        <form id="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="user-name" placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" id="user-phone" placeholder="+1234567890">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Bio</label>
+                                <textarea id="user-bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div id="chat-widget" class="chat-modal">
+        <div class="chat-header">
+            <span id="chat-partner-name">Chat</span>
+            <button onclick="closeChat()" style="background:none; border:none; color:white; cursor:pointer;"><i
+                    data-lucide="x"></i></button>
+        </div>
+        <div class="chat-messages" id="chat-message-list">
+            <!-- Messages -->
+        </div>
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type a message..." required>
+            <button type="submit"
+                style="background:var(--primary); color:white; border:none; width:40px; height:40px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+                <i data-lucide="send" style="width:18px; height:18px;"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content auth-content">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <button class="close-btn" onclick="closeModal('auth-modal')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="auth-tabs">
+                <button id="tab-login" class="active">Login</button>
+                <button id="tab-register">Register</button>
+            </div>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="auth-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" required placeholder="••••••••" minlength="6">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%">Login</button>
+            </form>
+            <p id="auth-message"></p>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  
+  --color-primary: #FF6B35;
+  --color-secondary: #2C3E50;
+  --color-background: #F8F9FA;
+  --color-card: #FFFFFF;
+  --color-foreground: #2C3E50;
+}
+
+:root {
+  --background: #F8F9FA;
+  --foreground: #2C3E50;
+  --font-inter: "Inter", sans-serif;
+  
+  /* Fallback variables if needed for shadcn/compatibility */
+  --primary: 15 100% 60%; /* HSL approximation of FF6B35 */
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}

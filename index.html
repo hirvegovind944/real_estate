@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Find your dream home with Real Estate. Search mostly luxury properties for sale and rent.">
+    <title>Real Estate | Find Your Dream Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Real Estate.</a>
+            <div class="nav-links">
+                <a href="#home" id="nav-home">Home</a>
+                <a href="#buy">Buy</a>
+                <a href="#rent">Rent</a>
+                <a href="#sell">Sell</a>
+                <a href="#agents">Agents</a>
+                <a href="#tools">Tools</a>
+                <a href="#" id="nav-messages" style="display:none">
+                    Messages <span id="msg-badge" class="notification-badge">0</span>
+                </a>
+                <a href="#" id="nav-profile-link" style="display:none">Profile</a>
+                <a href="#" class="btn-primary" id="auth-btn">Login</a>
+            </div>
+            <button class="menu-btn" id="menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Messages Section -->
+    <section id="messages-section" class="messages-section">
+        <div class="container">
+            <div class="messages-container">
+                <div class="messages-header">
+                    <h2>My Messages</h2>
+                </div>
+                <div class="messages-list-large" id="messages-list-large">
+                    <!-- Messages will be injected here -->
+                    <p style="padding: 2rem; color: var(--text-light); text-align: center;">Loading conversations...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of header/hero... -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="fade-in">Discover a Place <br>You'll Love to Live</h1>
+            <p class="fade-in delay-1">Explore our curated list of premium properties across the country.</p>
+
+            <div class="search-box fade-in delay-2">
+                <div class="search-tabs">
+                    <button class="tab active">All</button>
+                    <button class="tab">Buy</button>
+                    <button class="tab">Rent</button>
+                    <button class="tab">Sold</button>
+                </div>
+                <div class="search-inputs">
+                    <div class="input-group">
+                        <label>Location</label>
+                        <input type="text" id="search-location" placeholder="City, Zip, Neighborhood">
+                    </div>
+                    <div class="input-group">
+                        <label>Type</label>
+                        <select id="search-type">
+                            <option>Any Type</option>
+                            <option>House</option>
+                            <option>Apartment</option>
+                            <option>Villa</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Price Range</label>
+                        <select id="search-price">
+                            <option>Any Price</option>
+                            <option value="0-5000000">Under ₹50 Lakh</option>
+                            <option value="5000000-10000000">₹50 Lakh - ₹1 Cr</option>
+                            <option value="10000000-50000000">₹1 Cr - ₹5 Cr</option>
+                            <option value="50000000+">₹5 Cr+</option>
+                        </select>
+                    </div>
+                    <button class="search-btn" id="search-submit-btn">
+                        <i data-lucide="search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="featured" id="buy">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Properties</h2>
+                <a href="#" class="view-all">View All Properties <i data-lucide="arrow-right"></i></a>
+            </div>
+
+            <div class="property-grid" id="property-grid">
+                <!-- Properties will be dynamically rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Property Modal -->
+    <div id="add-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>List Your Property</h2>
+                <button class="close-btn" onclick="closeModal('add-modal')"><i data-lucide="x"></i></button>
+            </div>
+            <form id="add-property-form">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="prop-title" required placeholder="e.g. Luxury Villa in Mumbai">
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="prop-image" required placeholder="https://example.com/image.jpg">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" id="prop-price" required placeholder="e.g. 5000000">
+                    </div>
+                    <div class="form-group">
+                        <label>Listing Type</label>
+                        <select id="prop-type">
+                            <option value="For Sale">For Sale</option>
+                            <option value="For Rent">For Rent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Property Category</label>
+                        <select id="prop-category">
+                            <option value="Apartment">Apartment</option>
+                            <option value="House">House</option>
+                            <option value="Villa">Villa</option>
+                            <option value="Penthouse">Penthouse</option>
+                            <option value="Plot">Plot</option>
+                            <option value="Commercial">Commercial Office</option>
+                            <option value="Shop">Shop/Showroom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>City</label>
+                        <select id="prop-city">
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi NCR">Delhi NCR</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Surat">Surat</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Kanpur">Kanpur</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Indore">Indore</option>
+                            <option value="Thane">Thane</option>
+                            <option value="Bhopal">Bhopal</option>
+                            <option value="Visakhapatnam">Visakhapatnam</option>
+                            <option value="Patna">Patna</option>
+                            <option value="Vadodara">Vadodara</option>
+                            <option value="Ghaziabad">Ghaziabad</option>
+                            <option value="Ludhiana">Ludhiana</option>
+                            <option value="Agra">Agra</option>
+                            <option value="Nashik">Nashik</option>
+                            <option value="Faridabad">Faridabad</option>
+                            <option value="Rajkot">Rajkot</option>
+                            <option value="Varanasi">Varanasi</option>
+                            <option value="Srinagar">Srinagar</option>
+                            <option value="Aurangabad">Aurangabad</option>
+                            <option value="Amritsar">Amritsar</option>
+                            <option value="Navi Mumbai">Navi Mumbai</option>
+                            <option value="Allahabad">Allahabad</option>
+                            <option value="Ranchi">Ranchi</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            <option value="Jodhpur">Jodhpur</option>
+                            <option value="Guwahati">Guwahati</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Gurgaon">Gurgaon</option>
+                            <option value="Noida">Noida</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Local Address / Street</label>
+                    <input type="text" id="prop-address" required placeholder="Flat No, Building, Street Area">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Beds</label>
+                        <input type="number" id="prop-beds" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Baths</label>
+                        <input type="number" id="prop-baths" required min="0" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label>Area (sqft)</label>
+                        <input type="number" id="prop-area" required min="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="prop-desc" rows="4" placeholder="Describe the property details..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%">List Property</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <section id="profile-section" class="profile-section">
+        <div class="container">
+            <div class="profile-grid">
+                <!-- Sidebar -->
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i data-lucide="user"></i>
+                    </div>
+                    <h2 id="profile-name">User Name</h2>
+                    <p id="profile-email" style="color:var(--text-light); margin-bottom: 1rem;">user@example.com</p>
+
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Profile Completion: <span
+                                id="completion-text">0%</span></p>
+                        <div class="completion-bar">
+                            <div class="completion-fill" id="completion-fill"></div>
+                        </div>
+                    </div>
+
+                    <button id="logout-btn-profile" class="btn-primary"
+                        style="background: #ef4444; width: 100%; margin-top: 2rem;">Logout</button>
+                </div>
+
+                <!-- Content -->
+                <div class="profile-content">
+                    <div class="profile-card" style="text-align: left;">
+                        <h3>Update Profile</h3>
+                        <form id="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input type="text" id="user-name" placeholder="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="tel" id="user-phone" placeholder="+1234567890">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Bio</label>
+                                <textarea id="user-bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Removed My Messages from here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div id="chat-widget" class="chat-modal">
+        <div class="chat-header">
+            <span id="chat-partner-name">Chat</span>
+            <button onclick="closeChat()" style="background:none; border:none; color:white; cursor:pointer;"><i
+                    data-lucide="x"></i></button>
+        </div>
+        <div class="chat-messages" id="chat-message-list">
+            <!-- Messages -->
+        </div>
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type a message..." required>
+            <button type="submit"
+                style="background:var(--primary); color:white; border:none; width:40px; height:40px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;">
+                <i data-lucide="send" style="width:18px; height:18px;"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Property Detail Modal -->
+    <div id="detail-modal" class="modal">
+        <div class="modal-content detail-content">
+            <button class="close-btn-abs" onclick="closeModal('detail-modal')"><i data-lucide="x"></i></button>
+            <div class="detail-grid">
+                <div class="detail-image">
+                    <img id="detail-img" src="" alt="Property">
+                    <div class="tag" id="detail-tag">For Sale</div>
+                </div>
+                <div class="detail-info">
+                    <h2 id="detail-title">Property Title</h2>
+                    <p class="address"><i data-lucide="map-pin"></i> <span id="detail-address">Address</span></p>
+                    <div class="price-large" id="detail-price">₹0</div>
+
+                    <div class="features-large">
+                        <span><i data-lucide="bed"></i> <span id="detail-beds">0</span> Beds</span>
+                        <span><i data-lucide="bath"></i> <span id="detail-baths">0</span> Baths</span>
+                        <span><i data-lucide="maximize"></i> <span id="detail-area">0</span> sqft</span>
+                    </div>
+
+                    <div class="description">
+                        <h3>Description</h3>
+                        <p id="detail-desc">Property description goes here.</p>
+                    </div>
+
+                    <button class="btn-primary" style="width: 100%; margin-top: 1rem;">Contact Agent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content auth-content">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <button class="close-btn" onclick="closeModal('auth-modal')"><i data-lucide="x"></i></button>
+            </div>
+            <div class="auth-tabs">
+                <button id="tab-login" class="active">Login</button>
+                <button id="tab-register">Register</button>
+            </div>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="auth-email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" required placeholder="••••••••" minlength="6">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%">Login</button>
+            </form>
+            <p id="auth-message"></p>
+        </div>
+    </div>
+
+
+    <section class="tools-section" id="tools" style="padding: 6rem 0; background: #f8fafc;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real Estate Tools</h2>
+            </div>
+            <div class="services-grid">
+                <!-- EMI Calculator -->
+                <div class="service-card"
+                    style="text-align: left; background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                    <div class="icon-box" style="margin: 0 0 1rem;"><i data-lucide="calculator"></i></div>
+                    <h3>EMI Calculator</h3>
+                    <div class="form-group">
+                        <label>Loan Amount (₹)</label>
+                        <input type="number" id="emi-amount" placeholder="e.g 5000000">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Rate (%)</label>
+                            <input type="number" id="emi-rate" placeholder="8.5" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label>Tenure (Yrs)</label>
+                            <input type="number" id="emi-years" placeholder="20">
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="width: 100%" onclick="calculateEMI()">Calculate</button>
+                    <div id="emi-result" style="margin-top: 1.5rem; display: none;">
+                        <p style="color: var(--text-light); font-size: 0.9rem;">Monthly EMI</p>
+                        <h2 style="color: var(--primary);">₹<span id="emi-value">0</span></h2>
+                    </div>
+                </div>
+
+                <!-- Area Converter -->
+                <div class="service-card"
+                    style="text-align: left; background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
+                    <div class="icon-box" style="margin: 0 0 1rem;"><i data-lucide="ruler"></i></div>
+                    <h3>Area Converter</h3>
+                    <div class="form-group">
+                        <label>From</label>
+                        <div class="form-row" style="margin-bottom: 0.5rem;">
+                            <input type="number" id="conv-input" placeholder="Value">
+                            <select id="conv-from">
+                                <option value="sqft">Sq. Ft</option>
+                                <option value="sqm">Sq. Meter</option>
+                                <option value="acre">Acre</option>
+                                <option value="guntha">Guntha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>To</label>
+                        <select id="conv-to">
+                            <option value="sqm">Sq. Meter</option>
+                            <option value="sqft">Sq. Ft</option>
+                            <option value="acre">Acre</option>
+                            <option value="guntha">Guntha</option>
+                        </select>
+                    </div>
+                    <div id="conv-result"
+                        style="margin-top: 1.5rem; font-size: 1.25rem; font-weight: 600; color: var(--primary);">
+                        Result: 0
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon-box"><i data-lucide="home"></i></div>
+                    <h3>Buy a Home</h3>
+                    <p>Find your place with an immersive photo experience and the most listings, including things you
+                        won't find anywhere else.</p>
+                    <a href="#" class="service-link">Search Homes</a>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box"><i data-lucide="key"></i></div>
+                    <h3>Rent a Home</h3>
+                    <p>We’re creating a seamless online experience – from shopping on the largest rental network, to
+                        applying, to paying rent.</p>
+                    <a href="#" class="service-link">Find Rentals</a>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box"><i data-lucide="trending-up"></i></div>
+                    <h3>Sell a Home</h3>
+                    <p>No matter what path you take to sell your home, we can help you navigate a successful sale.</p>
+                    <a href="#" class="service-link">See Options</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>Real Estate.</h2>
+                <p>The best way to find your next home.</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Company</h4>
+                    <a href="#navbar">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                </div>
+                <div class="link-group">
+                    <h4>Resources</h4>
+                    <a href="#">Blog</a>
+                    <a href="#">Guides</a>
+                    <a href="#">Help Center</a>
+                </div>
+                <div class="link-group">
+                    <h4>Connect</h4>
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+                <div class="link-group">
+                    <h4>Contact Us</h4>
+                    <p style="color: #94a3b8; margin-bottom: 0.5rem;"><i data-lucide="map-pin"
+                            style="width:16px; display:inline"></i> Pune, Maharashtra, India</p>
+                    <p style="color: #94a3b8; margin-bottom: 0.5rem;"><i data-lucide="mail"
+                            style="width:16px; display:inline"></i> info@realestate.com</p>
+                    <p style="color: #94a3b8; margin-bottom: 0.5rem;"><i data-lucide="phone"
+                            style="width:16px; display:inline"></i> +91 7387811043</p>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; 2024 Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
