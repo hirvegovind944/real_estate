@@ -1142,3 +1142,114 @@ ul {
     border-radius: 50%;
     margin-left: 0.5rem;
 }
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 768px) {
+    /* Navigation */
+    .menu-btn {
+        display: block;
+        z-index: 1100;
+        color: var(--primary);
+    }
+
+    .nav-links {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 80px; /* Below navbar */
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        gap: 1.5rem;
+        z-index: 1050;
+    }
+
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .hero-content {
+        padding-top: 6rem;
+    }
+
+    /* Search Box */
+    .search-inputs {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Featured/Grid */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .property-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Messages Section Mobile */
+    .messages-section {
+        padding-top: 100px;
+    }
+
+    .messages-container {
+        height: 85vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .message-item-large {
+        padding: 1rem;
+    }
+
+    .message-preview {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
